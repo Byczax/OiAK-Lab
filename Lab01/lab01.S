@@ -28,48 +28,48 @@ _start:
         mov edx, READLEN
         int 0x80
 
-        mov [msg_len], eax
-        mov ecx, [msg_len]
-        
+        mov [msg_len], eax; system wzraca ilość przeczytanych znaków do eax
+        mov ecx, [msg_len]; wczytanie ilości przeczytanych znakóœ do ecx
+        mov ebx, 0; wyczyszczenie rejestru ebx
+        mov eax, msg
 
         rot13:
         ; sprawdzenie czy jest koniec ciągu znaków
-        cmp ecx, 0
-        jz end
+        cmp ecx, 0; sprawdź czy zero
+        jz end; jeżeli tak to koniec programu
         ; wczytanie kolejnego znaku
-        mov bl, [eax]
+        mov bl, [eax] ; przeniesienie znaku z wskaźnika eax do bl
         ; sprawdzenie czy wczytana wartość jest literą
-        cmp bl, 'A'
-        jb next
-        cmp bl, 'Z'
-        jbe rotting
-        cmp bl, 'a'
-        jb next
-        cmp bl, 'z'
-        jbe rotting
+        cmp bl, 'A';sprawdzenie czy znak jest mniejszy niż A
+        jb next; jeżeli tak to pomiń
+        cmp bl, 'Z'; sprawdzenie czy znak jest mniejszy lub równy Z
+        jbe rotting; jeżeli tak to wykonaj ROT13
+        cmp bl, 'a'; sprawdzenie czy znak jest mniejszy od a
+        jb next; jeżeli tak to pomiń
+        cmp bl, 'z'; sprawdzenie czy znak jest mniejszy lub równy z
+        jbe rotting; jeżeli tak, wykonaj ROT13
 
         rotting:
         ; sprawdzenie czy wyszło poza zakres z
-        add bl, 13
-        cmp bl, 'z'
-        jbe fixed
+        add bl, 13; dodaj do znaku wartość 13
+        cmp bl, 'Z'; sprawdzenie czy wartość jest mniejsza lub równa Z
+        jbe fixed; jeżeli tak to zatwierdź symbol
         ; sprawdzenie czy wszyło poza zakres Z
-        cmp bl, 'Z'
-        jbe fixed
+        cmp bl, 'z'; sprawdzenie czy wartość jest mniejsza lub równa z
+        jbe fixed; jeżeli tak to zatwierdź symbol
         ; gdy wyszedł poza zakres
-        sub bl, 26
-        jmp fixed
-        jmp next
+        sub bl, 26; gdy wartość wyszła poza zakres, odejmij 26
+        jmp fixed; zatwierdź wartość
         
         fixed:
-        mov  bl, [eax]
+        mov  bl, [eax]; nadpisz wartość wskazywaną przez eax
 
         next:
-        dec ecx
-        inc eax
-        jmp rot13
+        dec ecx; zmiejsz ecx o 1
+        inc eax; zwiększ eax o 1
+        jmp rot13; wykonaj ponownie
         end:
-        
+
         ; wypisanie wejścia od użytkownika
         mov eax, SYSWRITE
         mov ebx, STDOUT
