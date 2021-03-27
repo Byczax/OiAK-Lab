@@ -48,6 +48,7 @@ _start:
         jb next; jeżeli tak to pomiń
         cmp bl, 'z'; sprawdzenie czy znak jest mniejszy lub równy z
         jbe rotting_small; jeżeli tak, wykonaj ROT13
+        jmp next
 
         rotting_small:
         ; sprawdzenie czy wyszło poza zakres z
