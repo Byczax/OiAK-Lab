@@ -10,8 +10,8 @@ STDOUT: equ 1;
 READLEN: equ 1024;
 
         section .bss
-msg: resb READLEN
-msg_len: resd 1
+msg: resb READLEN; stworzenie bazy do przechowania wartości wprowadzonej przez użytwkonika
+msg_len: resd 1; deklaracja zmiennej przechowującej długość wartości wprowadzonej przez użytkownika
 
         section .text
 _start: 
@@ -31,7 +31,7 @@ _start:
         mov [msg_len], eax; system wzraca ilość przeczytanych znaków do eax
         mov ecx, [msg_len]; wczytanie ilości przeczytanych znakóœ do ecx
         mov ebx, 0; wyczyszczenie rejestru ebx
-        mov eax, msg
+        mov eax, msg; wpisanie na rejest eax wartości wprowadzonej przez użytkownika
 
         rot13:
         ; sprawdzenie czy jest koniec ciągu znaków
@@ -86,5 +86,5 @@ _start:
         int 0x80
 
         section .data
-instruction: db "Write sentece to encrypt: "
-instruction_len: equ $ - instruction
+instruction: db "Write sentece to encrypt: "; polecenie wypisywane na początku
+instruction_len: equ $ - instruction; długość polecenia
