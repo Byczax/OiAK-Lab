@@ -43,26 +43,30 @@ _start:
         cmp bl, 'A';sprawdzenie czy znak jest mniejszy niż A
         jb next; jeżeli tak to pomiń
         cmp bl, 'Z'; sprawdzenie czy znak jest mniejszy lub równy Z
-        jbe rotting; jeżeli tak to wykonaj ROT13
+        jbe rotting_big; jeżeli tak to wykonaj ROT13
         cmp bl, 'a'; sprawdzenie czy znak jest mniejszy od a
         jb next; jeżeli tak to pomiń
         cmp bl, 'z'; sprawdzenie czy znak jest mniejszy lub równy z
-        jbe rotting; jeżeli tak, wykonaj ROT13
+        jbe rotting_small; jeżeli tak, wykonaj ROT13
 
-        rotting:
+        rotting_small:
         ; sprawdzenie czy wyszło poza zakres z
         add bl, 13; dodaj do znaku wartość 13
-        cmp bl, 'Z'; sprawdzenie czy wartość jest mniejsza lub równa Z
+        cmp bl, 'z'; sprawdzenie czy wartość jest mniejsza lub równa Z
         jbe fixed; jeżeli tak to zatwierdź symbol
+        jmp fix; skocz do poprawiania wartości 
         ; sprawdzenie czy wszyło poza zakres Z
-        cmp bl, 'z'; sprawdzenie czy wartość jest mniejsza lub równa z
+        rotting_big:
+        add bl, 13; dodaj do znaku wartość 13
+        cmp bl, 'Z'; sprawdzenie czy wartość jest mniejsza lub równa z
         jbe fixed; jeżeli tak to zatwierdź symbol
         ; gdy wyszedł poza zakres
+        fix:
         sub bl, 26; gdy wartość wyszła poza zakres, odejmij 26
         jmp fixed; zatwierdź wartość
         
         fixed:
-        mov  bl, [eax]; nadpisz wartość wskazywaną przez eax
+        mov  [eax], bl; nadpisz wartość wskazywaną przez eax
 
         next:
         dec ecx; zmiejsz ecx o 1
@@ -84,6 +88,3 @@ _start:
         section .data
 instruction: db "Write sentece to encrypt: "
 instruction_len: equ $ - instruction
-answer: db ""
-
-
