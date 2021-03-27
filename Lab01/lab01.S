@@ -78,7 +78,7 @@ _start:
         mov eax, SYSWRITE
         mov ebx, STDOUT
         mov ecx, msg
-        mov edx, msg_len
+        mov edx, [msg_len]
         int 0x80 
         ; koniec programu
         mov eax, SYSEXIT
