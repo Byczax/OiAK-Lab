@@ -23,7 +23,10 @@ Program szyfruje podane zdanie za pomocą ROT13.
 Należy wpisać w konsoli `make` .
 
 ## Użycie
+**UWAGA!** Aby uruchomić plik, należy go oznaczyć że jest plikiem wykonywalnym za pomocą komendy `chmod +x <plik>`
 
 1. Należy wpisać w konsoli `./out/lab01` znajdując się w katalogu z plikiem wykonywalnym.
 2. Należy wpisać zdanie, które chcemy zaszyfrować.
 3. Otrzymamy w konsoli nasze zaszyfrowane zdanie.
+
+Aby przetestować automatycznie działanie naszego programu można użyć pliku `test.sh`, w którym znajduje się przygotowana komenda.
