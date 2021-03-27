@@ -22,3 +22,12 @@ Czyli repozytorium z zadaniami na laboratoria
 * README.md
 * częstym robieniu commit-ów
 * Makefile
+
+## Wymagania w raporcie
+
+* format markdown albo PDF
+* dokładny opis co było do zrobienia
+* dokładny opis implementacji, użyte algorytmy
+* błędne ścieżki są jak najbardziej mile widziane
+* nie wklejamy dużych bloków kodu, raczej mniejsze fragmenty, do których się odnosimy w tekście po numerach linii
+* wnioski z zadania, czego się nauczyliście, co było nowego, co było najtrudniejsze

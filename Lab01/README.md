@@ -7,7 +7,7 @@ Program szyfruje podane zdanie za pomocą ROT13.
 ## Wymagania
 
 - Dowolny Linux x86/x64:
-  - Wypalamy nasz wybrany system na dyskietkę 
+  - Wypalamy nasz wybrany system na nośnik zewnętrzny
   - instalujemy zgodnie z instrukcjami pojawiającymi się na ekranie.
   
 - NASM: W zależności od dystrybucji wykorzystujemy:
