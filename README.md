@@ -1,6 +1,6 @@
 # OiAK-Lab
-
-Czyli repozytorium z zadaniami na laboratoria
+252747 - Maciej Franciszek Byczko
+Repozytorium z zadaniami na laboratoria
 ## Co powinno znaleźć się w raporcie
 
 * format markdown albo PDF
@@ -22,3 +22,4 @@ Czyli repozytorium z zadaniami na laboratoria
 * README.md
 * częstym robieniu commit-ów
 * Makefile
+
